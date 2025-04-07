@@ -64,7 +64,7 @@ class SystemInfoController implements ContainerInjectionInterface {
     if (function_exists('phpinfo')) {
       ob_start();
       $phpinfo_flags = Settings::get('sa_core_2023_004_phpinfo_flags', ~ (INFO_VARIABLES | INFO_ENVIRONMENT));
-      phpinfo($phpinfo_flags);
+      
       $output = ob_get_clean();
     }
     else {
