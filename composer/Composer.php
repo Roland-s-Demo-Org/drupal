@@ -83,7 +83,7 @@ class Composer {
     $templateProjectPaths = static::composerSubprojectPaths($root, 'Template');
     foreach ($templateProjectPaths as $path) {
       $dir = dirname($path);
-      exec("composer --working-dir=$dir config minimum-stability $stability", $output, $status);
+      exec("composer --working-dir=" . escapeshellarg($dir) . " config minimum-stability " . escapeshellarg($stability), $output, $status);
       if ($status) {
         throw new \Exception('Could not set minimum-stability for template project ' . basename($dir));
       }
