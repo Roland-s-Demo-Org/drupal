@@ -645,7 +645,7 @@ class Schema extends DatabaseSchema {
     $this->connection->query($sql);
 
     if ($spec['type'] === 'serial') {
-      $max = $this->connection->query('SELECT MAX(`' . $field_new . '`) FROM {' . $table . '}')->fetchField();
+      $max = $this->connection->query('SELECT MAX([' . $field_new . ']) FROM {' . $table . '}')->fetchField();
       $this->connection->query("ALTER TABLE {" . $table . "} AUTO_INCREMENT = " . ($max + 1));
     }
   }
