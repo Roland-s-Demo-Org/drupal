@@ -989,7 +989,7 @@ EOD;
       $this->connection->query("CREATE SEQUENCE " . $seq . " OWNED BY {" . $table . "}.[" . $field_new . ']');
       // Set sequence to maximal field value to not conflict with existing
       // entries.
-      $this->connection->query("SELECT setval('" . $seq . "', MAX([" . $field . "])) FROM {" . $table . "}");
+      $this->connection->query("SELECT setval(:sequence_name, MAX([" . $field . "])) FROM {" . $table . "}", [':sequence_name' => $seq]);
       $this->connection->query('ALTER TABLE {' . $table . '} ALTER [' . $field . '] SET DEFAULT nextval(' . $this->connection->quote($seq) . ')');
     }
 
